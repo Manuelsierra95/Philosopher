@@ -1,29 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosopher.c                                      :+:      :+:    :+:   */
+/*   state.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 13:47:53 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/19 15:38:57 by msierra-         ###   ########.fr       */
+/*   Created: 2022/01/19 13:43:06 by msierra-          #+#    #+#             */
+/*   Updated: 2022/01/19 13:46:50 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../includes/philosopher.h"
 
-/*
-    
-*/
-
-int main(int argc, char **argv)
+thinking()
 {
-	t_philo			philo;
-	int				numphilo;
+	write(1, "Thinking\n", 7);
+	
+}
 
-	numphilo = getNumOfPhilo(argv[1]);
-    ft_pthreadcreate(argc, **argv, &philo, numphilo);
-	ft_managepthreads(numphilo, &philo);
+eating()
+{
+	write(1, "Eating\n", 7);
+	
+}
 
-    return (0);
+sleeping()
+{
+	write(1, "Sleeping\n", 7);
+	
+}
+
+died()
+{
+	write(1, "Died\n", 7);
+	
+}
+
+void	*philostate()
+{
+	int	eating;
+	int	sleeping;
+	int	thinking;
+	int	died;
+
+	thinking();
+	if()
+	eating();
+	sleeping();
+	died();
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosopher.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/19 13:47:43 by msierra-          #+#    #+#             */
+/*   Updated: 2022/01/19 14:21:43 by msierra-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILOSOPHER_H
 # define PHILOSOPHER_H
 
@@ -19,18 +31,14 @@ typedef struct s_state
 }	t_state;
 typedef struct s_philo
 {
-	int     count;
-    int     time;
-	t_state state;
+	int     		count;
+    int     		time;
+	pthread_mutex_t	*mutex;
+	t_state 		state;
 }	t_philo;
-typedef struct s_table
-{
-    struct s_table *left;
-    struct s_table *rigth;
-    struct t_philo *philo;
-}	t_table;
 int	ft_atoi(const char *str);
 
 
 void    ft_parse(int argc, char **argv, t_philo *philo);
+void	*philostate();
 #endif
