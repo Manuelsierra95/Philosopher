@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:43:06 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/19 13:46:50 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:01:01 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,22 @@ died()
 	
 }
 
-void	*philostate()
+void	*philostate(void *arg)
 {
-	int	eating;
-	int	sleeping;
-	int	thinking;
-	int	died;
-
-	thinking();
-	if()
-	eating();
-	sleeping();
-	died();
+	t_philo	*philo;
+	int		i;
+	
+	i = 0;
+	philo = (t_philo *) arg;
+	while (i < philo->state->numphilo)
+	{
+		thinking();
+		if (philo[i])
+		i++;
+	}
+	printf("philo is thinking\n");
+	
+	pthread_mutex_lock(philo);
+	pthread_mutex_unlock();
+	
 }

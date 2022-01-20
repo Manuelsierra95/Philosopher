@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:37 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/19 13:54:02 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:33:44 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ int	getNumOfPhilo(char *argv)
 	return (ft_atoi(argv));
 }
 
-void    getvalues(int argc, char **argv, t_philo **philo)
+void    getvalues(int argc, char **argv, t_state *state)
 {
-    (*philo)->state.t_die = ft_atoi(argv[2]);
-    (*philo)->state.t_eat = ft_atoi(argv[3]);
-    (*philo)->state.t_sleep = ft_atoi(argv[4]);
-    if (argc == 6)
-    (*philo)->state.m_eat = ft_atoi(argv[5]);
-    (*philo)->time = get_time();
+	state->numphilo = getNumOfPhilo(argv[1]);
+	state->t_die = ft_atoi(argv[2]);
+	state->t_eat = ft_atoi(argv[3]);
+	state->t_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+	{
+		state->m_eat = ft_atoi(argv[5]);	
+	}
 }
