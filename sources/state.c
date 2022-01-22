@@ -6,52 +6,68 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:43:06 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/20 16:01:01 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/01/22 17:46:37 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../includes/philosopher.h"
 
-thinking()
+eating(t_philo *philo)
 {
-	write(1, "Thinking\n", 7);
-	
+	int	m1;
+	int m2;
+
+	printf("Philo id: %d is Eating\n", philo->id);
+	m1 = minthread();
+	m2 = maxthread();
+	pthread_mutex_lock(&philo[m1]);
+	printf("Philo id: %d is taking a fork\n", philo->id);
+	usleep(philo->state->t_eat);
+	pthread_mutex_unlock(&philo[m2]);
+	printf("Philo id: %d left the fork\n", philo->id);
+	philo->time = philo->state->t_die;
 }
 
-eating()
+sleeping(t_philo *philo)
 {
-	write(1, "Eating\n", 7);
-	
+	printf("Philo id: %d is Sleeping\n", philo->id);
+	usleep(philo->state->t_sleep);
+	philo->time = philo->time - philo->state->t_sleep;
 }
 
-sleeping()
+died(t_philo *philo)
 {
-	write(1, "Sleeping\n", 7);
-	
+	printf("Philo id: %d is Dead\n", philo->id);
 }
 
-died()
+thinking(t_philo *philo)
 {
-	write(1, "Died\n", 7);
+	int	gettime;
 	
+	printf("Philo id: %d is Thinking\n", philo->id);
+	gettime = get_time();
+	philo->time = philo->time - gettime;
+	if (philo->time <= 0)
+	{
+		died(philo);
+		clean();
+	}
 }
 
 void	*philostate(void *arg)
 {
 	t_philo	*philo;
-	int		i;
+	int	m_eat;
 	
-	i = 0;
+	m_eat = philo->state->m_eat;
 	philo = (t_philo *) arg;
-	while (i < philo->state->numphilo)
+	while (1)
 	{
-		thinking();
-		if (philo[i])
-		i++;
+		if(m_eat != 0)
+			clean(3, philo->state->numphilo, philo); //paramos la ejecucion
+		thinking(philo);
+		eating(philo);
+		sleeping(philo);
+		m_eat--;
 	}
-	printf("philo is thinking\n");
-	
-	pthread_mutex_lock(philo);
-	pthread_mutex_unlock();
-	
 }
