@@ -6,11 +6,11 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 13:50:08 by msierra-          #+#    #+#             */
-/*   Updated: 2021/09/22 12:24:57 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:39:31 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philosopher.h"
 
 static int	ft_is_space(char c);
 
