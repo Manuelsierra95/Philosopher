@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:57:30 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/25 14:41:44 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/01/26 19:49:10 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	cleanthread(t_philo *philo, int num)
 {
-	int	n;
+	int		n;
+	t_state	*clean;
 
+	clean = philo->state;
 	n = num - 1;
 	while (n >= 0)
 	{
-		pthread_detach(philo->state->thread[n]);
+		pthread_detach(clean->thread[n]);
 		n--;
 	}
 	errormsg(1);
@@ -27,37 +29,30 @@ void	cleanthread(t_philo *philo, int num)
 
 void	cleanmutex(t_philo *philo, int num)
 {
-	int	n;
-
+	int		n;
+	t_state	*clean;
+	
+	clean = philo->state;
 	n = num - 1;
 	while (n >= 0)
 	{
-		pthread_mutex_destroy(&(philo->state->mutex[n]));
+		pthread_mutex_destroy(&clean->mutex[n]);
 		n--;
 	}
 	errormsg(2);
 }
 
-void	cleanphilo(t_philo *philo, int num)
-{
-	num--;
-	while (num >= 0)
-	{
-		free(&philo[num]);
-		num--;
-	}
-}
-
 void	cleanall(t_philo *philo, int num)
 {
+	usleep(1000);
 	cleanmutex(philo, num);
 	cleanthread(philo, num);
-	clean(philo, num);
+	clean(philo);
 }
 
-void	clean(t_philo *philo, int num)
+void	clean(t_philo *philo)
 {
-	cleanphilo(philo, num);
+	free(philo);
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:44:47 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/25 16:21:09 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/01/26 20:04:50 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,13 @@ size_t	gettime(void)
 	gettimeofday(&t_val, NULL);
 	// printf("Sec: %ld\nUsec: %d\n", t_val.tv_sec * 1000, t_val.tv_usec / 1000);
 	return ((t_val.tv_sec * 1000) + (t_val.tv_usec / 1000));
+}
+
+void	check_dead(t_philo *philo, long int checktimer)
+{
+	if (checktimer - gettime() < (unsigned long int) philo->state->t_die)
+	{
+		died(philo);
+		cleanall(philo, philo->state->numphilo);
+	}
 }

@@ -6,7 +6,7 @@
 #    By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 14:59:23 by msierra-          #+#    #+#              #
-#    Updated: 2022/01/25 14:57:23 by msierra-         ###   ########.fr        #
+#    Updated: 2022/01/26 19:47:34 by msierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,14 @@ RM		= rm -rf
 
 AR		= ar rcs
 
-CFLAGS 	= -Wall -Werror -Wextra
+CFLAGS 	= -Wall -Werror -Wextra 
+
+CXXFLAGS = -g3 -fsanitize=address -lpthread
 
 all	:		$(NAME)
 
 $(NAME)	:	start $(OBJS)
-			@$(CC) $(OBJS) -o $(NAME) -fsanitize=address
+			@$(CC) $(OBJS) -o $(NAME) $(CXXFLAGS)
 			@echo "$(RESET)Done"
 			@echo "$(GREEN)==========WELLDONE==========$(RESET)"
 			@echo "Success creating $(NAME) file"
