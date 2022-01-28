@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:43 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/26 20:10:39 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:13:40 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ Required
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
-#define RED	"\x1b[41m"
-#define GREEN	"\x1b[42m"
-#define RESET	"\x1b[0m"
+#define RED		"\033[31m"
+#define GREEN	"\033[32m"
+#define RESET	"\033[0m"
+#define PINK	"\033[35m"
+#define YELLOW	"\033[33m"
+#define BLUE	"\033[34m"
 
 typedef struct s_state
 {
@@ -33,6 +36,8 @@ typedef struct s_state
     int				m_eat;
 	int				is_dead;
 	int				numphilo;
+	int				need_clean;
+	char			*fork;
 	pthread_t		*thread;
 	pthread_mutex_t	*mutex;
 }	t_state;
@@ -40,7 +45,7 @@ typedef struct s_philo
 {
 	t_state *state;
 	int		id;
-	size_t		time;
+	size_t	time;
 	
 }	t_philo;
 // init
@@ -52,9 +57,9 @@ void	join_init(t_state *state);
 int	ft_atoi(const char *str);
 // Cleaner mallocs
 void	clean(t_philo *philo);
-void	cleanmutex(t_philo *philo, int num);
-void	cleanthread(t_philo *philo, int num);
-void	cleanall(t_philo *philo, int num);
+void	cleanmutex(t_philo *philo, int num, int print);
+void	cleanthread(t_philo *philo, int num, int print);
+void	cleanall(t_philo *philo, int num, int print);
 // Parse
 void    getvalues(int argc, char **argv, t_state *state);
 // Thread state & manage
@@ -64,7 +69,7 @@ void	died(t_philo *philo);
 size_t	gettime(void);
 int	minthread(int num1, int num2);
 int	maxthread(int num1, int num2);
-void	check_dead(t_philo *philo, long int checktimer);
+void	*check_dead(void *arg);
 // Error
 void	errormsg(int flag);
 

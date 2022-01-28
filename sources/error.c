@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 14:35:29 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/24 15:03:47 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:58:06 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	errormsg(int flag)
 {
 	if (flag == 1)
 	{
-		printf("Error al crear el hilo\n");
+		printf("----> Error al crear el hilo <----\n");
 	}
 	else if (flag == 2)
 	{
-		printf("Error al crear el mutex\n");
+		printf("----> Error al crear el mutex <----\n");
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:57:30 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/26 19:49:10 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:12:42 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../includes/philosopher.h"
 
-void	cleanthread(t_philo *philo, int num)
+void	cleanthread(t_philo *philo, int num, int print)
 {
 	int		n;
 	t_state	*clean;
@@ -24,10 +24,11 @@ void	cleanthread(t_philo *philo, int num)
 		pthread_detach(clean->thread[n]);
 		n--;
 	}
-	errormsg(1);
+	if (print == 1)
+		errormsg(1);
 }
 
-void	cleanmutex(t_philo *philo, int num)
+void	cleanmutex(t_philo *philo, int num, int print)
 {
 	int		n;
 	t_state	*clean;
@@ -39,14 +40,15 @@ void	cleanmutex(t_philo *philo, int num)
 		pthread_mutex_destroy(&clean->mutex[n]);
 		n--;
 	}
-	errormsg(2);
+	if (print == 1)
+		errormsg(2);
 }
 
-void	cleanall(t_philo *philo, int num)
+void	cleanall(t_philo *philo, int num, int print)
 {
-	usleep(1000);
-	cleanmutex(philo, num);
-	cleanthread(philo, num);
+	// usleep(1000);
+	cleanmutex(philo, num, print);
+	cleanthread(philo, num, print);
 	clean(philo);
 }
 
