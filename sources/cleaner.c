@@ -6,50 +6,50 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:57:30 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/28 18:12:42 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/01 16:02:36 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../includes/philosopher.h"
 
-void	cleanthread(t_philo *philo, int num, int print)
+void	cleanthread(t_philo *philo, int print)
 {
-	int		n;
+	int		i;
 	t_state	*clean;
 
 	clean = philo->state;
-	n = num - 1;
-	while (n >= 0)
+	i = 0;
+	while (i <= clean->numphilo)
 	{
-		pthread_detach(clean->thread[n]);
-		n--;
+		pthread_detach(clean->thread[i]);
+		i++;
 	}
 	if (print == 1)
 		errormsg(1);
 }
 
-void	cleanmutex(t_philo *philo, int num, int print)
+void	cleanmutex(t_philo *philo, int print)
 {
-	int		n;
+	int		i;
 	t_state	*clean;
 	
 	clean = philo->state;
-	n = num - 1;
-	while (n >= 0)
+	i = 0;
+	while (i <= clean->numphilo)
 	{
-		pthread_mutex_destroy(&clean->mutex[n]);
-		n--;
+		pthread_mutex_destroy(&clean->mutex[i]);
+		i++;
 	}
 	if (print == 1)
 		errormsg(2);
 }
 
-void	cleanall(t_philo *philo, int num, int print)
+void	cleanall(t_philo *philo, int print)
 {
 	// usleep(1000);
-	cleanmutex(philo, num, print);
-	cleanthread(philo, num, print);
-	clean(philo);
+	cleanmutex(philo, print);
+	cleanthread(philo, print);
+	// clean(philo);
 }
 
 void	clean(t_philo *philo)

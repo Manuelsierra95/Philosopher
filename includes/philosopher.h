@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:43 by msierra-          #+#    #+#             */
-/*   Updated: 2022/01/28 18:13:40 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/01 18:36:39 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,29 @@ void	mutex_init(t_state *state, t_philo *philo);
 void	thread_init(t_state *state, t_philo *philo);
 void	philo_init(t_state *state, t_philo *philo);
 void	join_init(t_state *state);
+void	fork_init(t_state *state);
 // Includes
 int	ft_atoi(const char *str);
 // Cleaner mallocs
 void	clean(t_philo *philo);
-void	cleanmutex(t_philo *philo, int num, int print);
-void	cleanthread(t_philo *philo, int num, int print);
-void	cleanall(t_philo *philo, int num, int print);
+void	cleanmutex(t_philo *philo, int print);
+void	cleanthread(t_philo *philo, int print);
+void	cleanall(t_philo *philo, int print);
 // Parse
 void    getvalues(int argc, char **argv, t_state *state);
 // Thread state & manage
 void	*philostate(void *arg);
-void	died(t_philo *philo);
+void	died(int id);
 // Utils
 size_t	gettime(void);
 int	minthread(int num1, int num2);
 int	maxthread(int num1, int num2);
-void	*check_dead(void *arg);
+void	*set_dead(void *arg);
+int	check_dead(t_state *state, int id);
+void	lock_mutex(pthread_mutex_t *mutex, t_state *state, int i);
+void	unlock_mutex(pthread_mutex_t *mutex, t_state *state, int i);
+void	manage_fork(t_philo *philo, t_state *table);
+
 // Error
 void	errormsg(int flag);
 

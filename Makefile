@@ -6,7 +6,7 @@
 #    By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 14:59:23 by msierra-          #+#    #+#              #
-#    Updated: 2022/01/26 19:47:34 by msierra-         ###   ########.fr        #
+#    Updated: 2022/02/01 15:01:26 by msierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS		=	./includes/ft_atoi.c	\
 		  		./sources/philosopher.c	\
 		  		./sources/state.c		\
 		  		./sources/utils.c		\
+		  		./sources/utils2.c		\
 		  		./sources/error.c		\
 
 PINK = \033[1;35m
