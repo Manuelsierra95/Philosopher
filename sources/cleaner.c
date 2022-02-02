@@ -46,36 +46,17 @@ void	cleanmutex(t_philo *philo, int print)
 
 void	cleanall(t_philo *philo, int print)
 {
-	// usleep(1000);
+	if (print == 4)
+		errormsg(4);
 	cleanmutex(philo, print);
 	cleanthread(philo, print);
-	// clean(philo);
+	clean(philo);
 }
 
 void	clean(t_philo *philo)
 {
-	free(philo);
+	// free(philo);
+	int i;
+	i = philo->state->numphilo;
 	exit(0);
 }
-
-// void	clean(int flag, int num, t_philo *philo)
-// {
-// 	if (flag == 1) //clean mutex
-// 	{
-// 		cleanmutex(philo->state, num);
-// 	}
-// 	if (flag == 2) //clean thread
-// 	{
-// 		cleanthread(philo->state, num);
-// 	}
-// 	if (flag == 3)
-// 	{
-// 		cleanmutex(philo->state, num);	
-// 		cleanthread(philo->state, num);
-// 	}
-// 	if (flag == 4) //clean philo
-// 	{
-// 		cleanphilo(philo, num);		
-// 	}
-// 	exit(0);
-// }

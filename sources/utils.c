@@ -33,11 +33,10 @@ size_t	gettime(void)
 	struct timeval	t_val;
 
 	gettimeofday(&t_val, NULL);
-	// printf("Sec: %ld\nUsec: %d\n", t_val.tv_sec * 1000, t_val.tv_usec / 1000);
 	return ((t_val.tv_sec * 1000) + (t_val.tv_usec / 1000));
 }
 
-int	check_dead(t_state *state, int id)
+int	check_dead(t_state *state, t_philo *philo, int id)
 {
 	int	i;
 
@@ -46,7 +45,7 @@ int	check_dead(t_state *state, int id)
 	if (i == 1)
 	{
 		died(id);
-		exit(0);
+		cleanall(philo, 0);
 	}
 	pthread_mutex_unlock(&state->mutex[state->numphilo]);
 	return (i);
@@ -58,7 +57,6 @@ void	*set_dead(void *arg)
 	t_state	*table;
 	t_philo	*philo;
 
-	// printf("all_eat: %d\tnumphilo: %d\n", state->all_eat, state->numphilo);
 	philo = arg;
 	table = philo->state;
 	while (1)
@@ -66,10 +64,9 @@ void	*set_dead(void *arg)
 		i = 0;
 		while(i < table->numphilo)
 		{
-			// printf("----------time: %zu\t gettime: %zu\n", philo[i].time, gettime());
 			if (philo[i].time - gettime() < (unsigned long int) table->t_die)
 			{
-				table->is_dead = 1; // Para que paren de ejecutar los hilos sus funciones
+				table->is_dead = 1;
 				break ;
 			}
 			i++;

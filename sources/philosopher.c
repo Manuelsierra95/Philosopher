@@ -13,9 +13,13 @@
 #include"../includes/philosopher.h"
 
 /*
-	TODO: 	Corregir mensajes despues de muerto | Cortar programa cuando eso ?Con un mutex?
-			Añadir los tenedores de forma que puedas coger el segundo tenedor!!!
+	TODO:
 */
+
+void	leak(void)
+{
+	system("leaks philosopher");
+}
 
 int main(int argc, char **argv)
 {
@@ -23,13 +27,14 @@ int main(int argc, char **argv)
 	static t_state	state;
 	int				i;
 
+	// atexit(leak);
 	i = 0;
-	getvalues(argc, argv, &state); //TODO: errores de valores negativos
-	philo = (t_philo *) malloc(state.numphilo * sizeof(t_philo) + 1);
+	getvalues(argc, argv, &state);
+	philo = (t_philo *) malloc(state.numphilo * (sizeof(t_philo) + 1));
 	fork_init(&state);
 	philo_init(&state, philo);
 	mutex_init(&state, philo);
 	thread_init(&state, philo);
-	cleanall(philo, 0); 
+	cleanall(philo, 0);
     return (0);
 }

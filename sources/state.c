@@ -21,18 +21,12 @@ void	thinking(t_philo *philo)
 {
 	size_t	time;
 
-	if (check_dead(philo->state, philo->id) == 0)
+	if (check_dead(philo->state, philo, philo->id) == 0)
 	{
 		time = gettime();
 		philo->time = time - philo->time;
 		printf(YELLOW "Philo %d is Thinking\n" RESET, philo->id);
 	}
-	// else
-	// {
-	// 	died(philo, philo->id);
-	// 	cleanall(philo, 2);
-	// 	exit(0);
-	// }
 }
 
 void	eating(t_philo *philo)
@@ -40,7 +34,6 @@ void	eating(t_philo *philo)
 	t_state	*table;
 
 	table = philo->state;
-	
 	printf(BLUE "Philo %d is taking a fork\n" RESET, philo->id);
 	printf(GREEN "Philo %d is Eating\n" RESET, philo->id);
 	manage_fork(philo, table);
@@ -51,18 +44,12 @@ void	eating(t_philo *philo)
 
 void	sleeping(t_philo *philo)
 {
-	if (check_dead(philo->state, philo->id) == 0)
+	if (check_dead(philo->state, philo, philo->id) == 0)
 	{
 		printf(PINK "Philo %d is Sleeping\n" RESET, philo->id);
 		usleep(philo->state->t_sleep);
 		philo->time = philo->time - philo->state->t_sleep;
 	}
-	// else
-	// {
-	// 	died(philo, philo->id);
-	// 	cleanall(philo, 2);
-	// 	exit(0);
-	// }
 }
 
 void	*philostate(void *arg)
@@ -80,7 +67,7 @@ void	*philostate(void *arg)
 			break ;
 		}
 		thinking(philo);
-		if (check_dead(philo->state, philo->id) == 0)
+		if (check_dead(philo->state, philo, philo->id) == 0)
 			eating(philo);
 		sleeping(philo);
 		m_eat--;

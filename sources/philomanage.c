@@ -21,7 +21,6 @@ void	fork_init(t_state *state)
 	while(i < state->numphilo)
 	{
 		state->fork[i] = 0;
-		printf("fork: %d\n", state->fork[i]);
 		i++;
 	}
 }
@@ -54,7 +53,7 @@ void	mutex_init(t_state *state, t_philo *philo)
 	}
 }
 
-void	join_init(t_state *state)
+void	join_init(t_state *state, t_philo *philo)
 {
 	int	i;
 
@@ -62,9 +61,7 @@ void	join_init(t_state *state)
 	while(i <= state->numphilo)
 	{
 		if(0 != pthread_join(state->thread[i], NULL))
-		{
-			//TODO:ERROR
-		}
+			cleanall(philo, 4);
 		pthread_detach(state->thread[i]);
 		i++;
 	}
@@ -76,7 +73,6 @@ void	thread_init(t_state *state, t_philo *philo) //va ha crear los hilos
 
 	i = 0;
 	state->thread = (pthread_t *) malloc(sizeof(pthread_t) * state->numphilo + 1);
-	// philo->time = state->t_die;
 	while (i < philo->state->numphilo)
 	{
 		if (0 != pthread_create(&(state->thread)[i], NULL, &philostate, &philo[i]))
@@ -89,5 +85,5 @@ void	thread_init(t_state *state, t_philo *philo) //va ha crear los hilos
 		i++;
 	}
 	pthread_create(&(state->thread)[i], NULL, &set_dead, philo);
-	join_init(state);
+	join_init(state, philo);
 }

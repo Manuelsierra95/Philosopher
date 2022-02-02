@@ -52,10 +52,10 @@ typedef struct s_philo
 void	mutex_init(t_state *state, t_philo *philo);
 void	thread_init(t_state *state, t_philo *philo);
 void	philo_init(t_state *state, t_philo *philo);
-void	join_init(t_state *state);
+void	join_init(t_state *state, t_philo *philo);
 void	fork_init(t_state *state);
 // Includes
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 // Cleaner mallocs
 void	clean(t_philo *philo);
 void	cleanmutex(t_philo *philo, int print);
@@ -68,15 +68,15 @@ void	*philostate(void *arg);
 void	died(int id);
 // Utils
 size_t	gettime(void);
-int	minthread(int num1, int num2);
-int	maxthread(int num1, int num2);
+void	printtime();
+int		minthread(int num1, int num2);
+int		maxthread(int num1, int num2);
 void	*set_dead(void *arg);
-int	check_dead(t_state *state, int id);
+int		check_dead(t_state *state, t_philo *philo, int id);
 void	lock_mutex(pthread_mutex_t *mutex, t_state *state, int i);
 void	unlock_mutex(pthread_mutex_t *mutex, t_state *state, int i);
 void	manage_fork(t_philo *philo, t_state *table);
 
 // Error
 void	errormsg(int flag);
-
 #endif

@@ -15,11 +15,11 @@
 void	errormsg(int flag)
 {
 	if (flag == 1)
-	{
 		printf("----> Error al crear el hilo <----\n");
-	}
 	else if (flag == 2)
-	{
 		printf("----> Error al crear el mutex <----\n");
-	}
+	else if (flag == 3)
+		printf("----> Error argumentos incorrectos <----\n");
+	else if (flag == 4)
+		printf("----> Error en el join <----\n");
 }

@@ -15,16 +15,18 @@
 void	lock_mutex(pthread_mutex_t *mutex, t_state *state, int i)
 {
 	pthread_mutex_lock(mutex);
-	// printf("Valor de i: %d\n", i);
-	// state->fork[i] = 1;
+	state->fork[i] = 1;
 }
 
 void	unlock_mutex(pthread_mutex_t *mutex, t_state *state, int i)
 {
-	// state->fork[i] = 0;
+	state->fork[i] = 0;
 	pthread_mutex_unlock(mutex);
 }
 
+	//0 no se necesita bloqueo, 1 o -1 hay un tenedor bloqueado
+	//y necesitamos gestionar la fila
+	//1 = derecha | -1 = izquierda
 void	manage_fork(t_philo *philo, t_state *table)
 {
 	int	total;
@@ -33,27 +35,30 @@ void	manage_fork(t_philo *philo, t_state *table)
 
 	m1 = minthread(philo->id, (philo->id + 1)%philo->state->numphilo); //izq
 	m2 = maxthread(philo->id, (philo->id + 1)%philo->state->numphilo); //der
-	
-	
-	//0 no se necesita bloqueo, 1 o -1 hay un tenedor bloqueado
-	//y necesitamos gestionar la fila
-	//1 = derecha | -1 = izquierda
 	total = table->fork[m1] - table->fork[m2];
 	if(total == 0)
 	{
-		lock_mutex(&table->mutex[m1], &table[m1], m1);
-		lock_mutex(&table->mutex[m2], &table[m2], m2);
+		lock_mutex(&table->mutex[m1], table, m1);
+		lock_mutex(&table->mutex[m2], table, m2);
 	}
 	else if (total == 1)
 	{
-		lock_mutex(&table->mutex[m1], &table[m1], m1);
-		lock_mutex(&table->mutex[m2], &table[m2], m2);
+		lock_mutex(&table->mutex[m1], table, m1);
+		lock_mutex(&table->mutex[m2], table, m2);
 	}
 	else if (total == -1)
 	{
-		lock_mutex(&table->mutex[m2], &table[m2], m2);
-		lock_mutex(&table->mutex[m1], &table[m1], m1);
+		lock_mutex(&table->mutex[m2], table, m2);
+		lock_mutex(&table->mutex[m1], table, m1);
 	}
-	unlock_mutex(&table->mutex[m1], &table[m1], m1);
-	unlock_mutex(&table->mutex[m2], &table[m2], m2);
+	unlock_mutex(&table->mutex[m1], table, m1);
+	unlock_mutex(&table->mutex[m2], table, m2);
+}
+
+void	printtime()
+{
+	size_t	time;
+
+	time = gettime() / 1000000;
+	printf("time: %zu\t", time);
 }
