@@ -12,7 +12,7 @@
 
 NAME		= 	philosopher
 
-SRCS		=	./includes/ft_atoi.c	\
+SRCS		=	./includes/atoi.c	\
 		  		./sources/cleaner.c		\
 		  		./sources/parse.c		\
 		  		./sources/philomanage.c	\

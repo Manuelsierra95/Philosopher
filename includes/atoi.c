@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,9 @@
 
 #include "philosopher.h"
 
-static int	ft_is_space(char c);
+static int	is_space(char c);
 
-int	ft_atoi(const char *str)
+int	atoi(const char *str)
 {
 	int				sign;
 	int				i;
@@ -23,7 +23,7 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	i = 0;
 	c = 0;
-	while (ft_is_space(str[i]))
+	while (is_space(str[i]))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
@@ -43,7 +43,7 @@ int	ft_atoi(const char *str)
 	return (c * sign);
 }
 
-static int	ft_is_space(char c)
+static int	is_space(char c)
 {
 	if (c == ' ' || c == 9 || c == 10 || c == 11 || c == 12 || c == 13)
 		return (1);

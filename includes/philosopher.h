@@ -55,7 +55,7 @@ void	philo_init(t_state *state, t_philo *philo);
 void	join_init(t_state *state, t_philo *philo);
 void	fork_init(t_state *state);
 // Includes
-int		ft_atoi(const char *str);
+int		atoi(const char *str);
 // Cleaner mallocs
 void	clean(t_philo *philo);
 void	cleanmutex(t_philo *philo, int print);

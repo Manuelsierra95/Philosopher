@@ -21,12 +21,19 @@ void    getvalues(int argc, char **argv, t_state *state)
 	}
 	state->need_clean = 0;
 	state->is_dead = 0;
-	state->numphilo = ft_atoi(argv[1]);
-	state->t_die = ft_atoi(argv[2]);
-	state->t_eat = ft_atoi(argv[3]);
-	state->t_sleep = ft_atoi(argv[4]);
-	if (argc == 6 && argv[5] >= 0)
-		state->m_eat = ft_atoi(argv[5]);
+	state->numphilo = atoi(argv[1]);
+	state->t_die = atoi(argv[2]);
+	state->t_eat = atoi(argv[3]);
+	state->t_sleep = atoi(argv[4]);
+	if (argc == 6)
+	{
+		if(argv[5] < 0)
+		{
+			errormsg(3);
+			exit(0);
+		}
+		state->m_eat = atoi(argv[5]);
+	}
 	else
 		state->m_eat = -1;
 }
