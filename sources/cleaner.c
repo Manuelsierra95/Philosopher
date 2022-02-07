@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:57:30 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/01 16:02:36 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:52:56 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	cleanthread(t_philo *philo, int print)
 
 	clean = philo->state;
 	i = 0;
-	while (i <= clean->numphilo)
+	while (i <= clean->numph)
 	{
 		pthread_detach(clean->thread[i]);
 		i++;
@@ -32,10 +32,10 @@ void	cleanmutex(t_philo *philo, int print)
 {
 	int		i;
 	t_state	*clean;
-	
+
 	clean = philo->state;
 	i = 0;
-	while (i <= clean->numphilo)
+	while (i <= clean->numph)
 	{
 		pthread_mutex_destroy(&clean->mutex[i]);
 		i++;
@@ -55,8 +55,8 @@ void	cleanall(t_philo *philo, int print)
 
 void	clean(t_philo *philo)
 {
-	// free(philo);
-	int i;
-	i = philo->state->numphilo;
+	int	i;
+
+	i = philo->state->numph;
 	exit(0);
 }
