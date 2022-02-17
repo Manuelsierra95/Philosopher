@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:44:47 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/07 17:47:18 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:59:21 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	*set_dead(void *arg)
 	int		i;
 	t_state	*table;
 	t_philo	*philo;
+	size_t	time;
 
 	philo = arg;
 	table = philo->state;
@@ -64,7 +65,8 @@ void	*set_dead(void *arg)
 		i = 0;
 		while (i < table->numph)
 		{
-			if (philo[i].time - gettime() < (unsigned long int) table->t_die)
+			time = gettime() - philo[i].time;
+			if (time >= table->t_die)
 			{
 				table->is_dead = 1;
 				break ;

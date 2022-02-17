@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:43 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/07 17:52:32 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/17 18:20:03 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ Required
 
 typedef struct s_state
 {
-	int				t_die;
-	int				t_eat;
-	int				t_sleep;
-	int				m_eat;
+	size_t			t_die;
+	size_t			t_eat;
+	size_t			t_sleep;
+	size_t			m_eat;
 	int				is_dead;
 	int				numph;
 	int				need_clean;
-	int				pt;
+	size_t			t_init;
 	char			*fork;
 	pthread_t		*thread;
 	pthread_mutex_t	*mutex;
@@ -78,4 +78,5 @@ void	unlock_mutex(pthread_mutex_t *mutex, t_philo *philo, int i, int id);
 void	manage_fork(t_philo *philo, t_state *table);
 // Error
 void	errormsg(int flag);
+void	leak(void);
 #endif

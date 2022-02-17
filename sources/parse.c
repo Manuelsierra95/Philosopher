@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:37 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/07 17:53:15 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/17 17:21:16 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	getvalues(int argc, char **argv, t_state *state)
 	state->t_die = atoi(argv[2]);
 	state->t_eat = atoi(argv[3]);
 	state->t_sleep = atoi(argv[4]);
+	state->t_init = gettime();
 	if (argc == 6)
 	{
 		if (argv[5] < 0)

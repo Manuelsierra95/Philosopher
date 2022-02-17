@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:47:32 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/07 17:40:17 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/17 18:50:19 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	mutex_init(t_state *state, t_philo *philo)
 
 	i = 0;
 	n = state->numph;
-	state->mutex = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t) * n + 1);
+	state->mutex = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t) * (n + 1));
 	while (i <= philo->state->numph)
 	{
 		if (0 != pthread_mutex_init(&(state->mutex)[i], NULL))
@@ -74,7 +74,7 @@ void	thread_init(t_state *state, t_philo *philo)
 	int	i;
 
 	i = 0;
-	state->thread = (pthread_t *) malloc(sizeof(pthread_t) * state->numph + 1);
+	state->thread = (pthread_t *) malloc(sizeof(pthread_t) * (state->numph + 1));
 	while (i < philo->state->numph)
 	{
 		if (0 != pthread_create(&(state->thread)[i], NULL, &phstate, &philo[i]))

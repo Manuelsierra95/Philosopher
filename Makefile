@@ -6,7 +6,7 @@
 #    By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 14:59:23 by msierra-          #+#    #+#              #
-#    Updated: 2022/02/07 15:23:12 by msierra-         ###   ########.fr        #
+#    Updated: 2022/02/17 18:04:28 by msierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ AR		= ar rcs
 
 CFLAGS 	= -Wall -Werror -Wextra 
 
-CXXFLAGS = -g3 -fsanitize=address -lpthread
+CXXFLAGS = -g3 -lpthread
 
 all	:		$(NAME)
 
