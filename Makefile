@@ -6,13 +6,13 @@
 #    By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 14:59:23 by msierra-          #+#    #+#              #
-#    Updated: 2022/02/17 18:04:28 by msierra-         ###   ########.fr        #
+#    Updated: 2022/02/21 15:11:49 by msierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philosopher
 
-SRCS		=	./includes/atoi.c	\
+SRCS		=	./includes/atoi.c		\
 		  		./sources/cleaner.c		\
 		  		./sources/parse.c		\
 		  		./sources/philomanage.c	\
@@ -37,7 +37,7 @@ AR		= ar rcs
 
 CFLAGS 	= -Wall -Werror -Wextra 
 
-CXXFLAGS = -g3 -lpthread
+CXXFLAGS = -lpthread
 
 all	:		$(NAME)
 

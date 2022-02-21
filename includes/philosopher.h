@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:43 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/17 18:20:03 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/21 15:06:08 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	thread_init(t_state *state, t_philo *philo);
 void	philo_init(t_state *state, t_philo *philo);
 void	join_init(t_state *state, t_philo *philo);
 void	fork_init(t_state *state);
+void	join_init(t_state *state, t_philo *philo);
 // Includes
 int		atoi(const char *str);
 // Cleaner mallocs
