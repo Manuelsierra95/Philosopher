@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:47:32 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 16:08:34 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/24 17:54:53 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	philo_init(t_state *state, t_philo *philo)
 	{
 		philo[i].id = i;
 		philo[i].state = state;
-		philo[i].time = gettime();
+		philo[i].time = 0;
 		i++;
 	}
 }
 
-void	mutex_init(t_state *state, t_philo *philo)
+void	mutex_init(t_state *state)
 {
 	int	i;
 	int	n;
@@ -47,7 +47,7 @@ void	mutex_init(t_state *state, t_philo *philo)
 	i = 0;
 	n = state->numph;
 	state->mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (n + 1));
-	while (i <= philo->state->numph)
+	while (i <= n)
 	{
 		if (0 != pthread_mutex_init(&(state->mutex)[i], NULL))
 			state->need_clean = 1;
@@ -62,8 +62,8 @@ void	thread_init(t_state *state, t_philo *philo)
 
 	n = state->numph;
 	i = 0;
-	state->thread = (pthread_t *)malloc(sizeof(pthread_t) * (n + 1));
-	while (i < philo->state->numph)
+	state->thread = malloc(sizeof(int) * (n + 1));
+	while (i < n)
 	{
 		if (0 != pthread_create(&(state->thread)[i], NULL, &phstate, &philo[i]))
 		{

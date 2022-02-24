@@ -6,11 +6,11 @@
 #    By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 14:59:23 by msierra-          #+#    #+#              #
-#    Updated: 2022/02/21 15:11:49 by msierra-         ###   ########.fr        #
+#    Updated: 2022/02/24 15:21:21 by msierra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= 	philosopher
+NAME		= 	philo
 
 SRCS		=	./includes/atoi.c		\
 		  		./sources/cleaner.c		\
@@ -20,6 +20,7 @@ SRCS		=	./includes/atoi.c		\
 		  		./sources/state.c		\
 		  		./sources/utils.c		\
 		  		./sources/utils2.c		\
+		  		./sources/utils3.c		\
 		  		./sources/error.c		\
 
 PINK = \033[1;35m
@@ -35,7 +36,7 @@ RM		= rm -rf
 
 AR		= ar rcs
 
-CFLAGS 	= -Wall -Werror -Wextra 
+CFLAGS 	= -Wall -Werror -Wextra
 
 CXXFLAGS = -lpthread
 

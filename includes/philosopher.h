@@ -6,12 +6,12 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:43 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 15:06:08 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/24 17:53:15 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHER_H
-# define PHILOSOPHER_H
+#ifndef PHILO_H
+# define PHILO_H
 /*
 Required
 */
@@ -33,14 +33,15 @@ typedef struct s_state
 	size_t			t_die;
 	size_t			t_eat;
 	size_t			t_sleep;
-	size_t			m_eat;
+	size_t			t_init;
 	int				is_dead;
+	size_t			m_eat;
 	int				numph;
 	int				need_clean;
-	size_t			t_init;
 	char			*fork;
 	pthread_t		*thread;
 	pthread_mutex_t	*mutex;
+	pthread_mutex_t	print;
 }	t_state;
 typedef struct s_philo
 {
@@ -49,7 +50,7 @@ typedef struct s_philo
 	size_t	time;
 }	t_philo;
 // init
-void	mutex_init(t_state *state, t_philo *philo);
+void	mutex_init(t_state *state);
 void	thread_init(t_state *state, t_philo *philo);
 void	philo_init(t_state *state, t_philo *philo);
 void	join_init(t_state *state, t_philo *philo);
@@ -77,7 +78,10 @@ int		check_dead(t_state *state, t_philo *philo);
 void	lock_mutex(pthread_mutex_t *mutex, t_philo *philo, int i, int id);
 void	unlock_mutex(pthread_mutex_t *mutex, t_philo *philo, int i, int id);
 void	manage_fork(t_philo *philo, t_state *table);
+void	print_msg(t_philo *philo, int flag, int id);
+void	t_sleep(t_philo *philo, size_t t_sleep);
 // Error
+void	errorcontrol(int argc, char **argv);
 void	errormsg(int flag);
 void	leak(void);
 #endif

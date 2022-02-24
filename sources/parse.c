@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:37 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/17 17:21:16 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/24 16:45:05 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 void	getvalues(int argc, char **argv, t_state *state)
 {
-	if (argv[1] < 0 || argv[2] < 0 || argv[3] < 0 || argv[4] < 0)
-	{
-		errormsg(3);
-		exit(0);
-	}
 	state->need_clean = 0;
 	state->is_dead = 0;
 	state->numph = atoi(argv[1]);
@@ -28,7 +23,7 @@ void	getvalues(int argc, char **argv, t_state *state)
 	state->t_init = gettime();
 	if (argc == 6)
 	{
-		if (argv[5] < 0)
+		if (argv[5] <= 0)
 		{
 			errormsg(3);
 			exit(0);
