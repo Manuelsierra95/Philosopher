@@ -6,14 +6,13 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:53 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/24 18:02:27 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/26 19:08:47 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../includes/philosopher.h"
 
 /*
-	Arraglar que se queda colgado en la funcion de set_dead()
 	Arreglar que no mueren con 310 200 100, cuando si deberia morir algun philo *Hay que sumar los valores de la comida anterior 
 																				para checkear si debe de morir
 */

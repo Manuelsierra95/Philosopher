@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:44:47 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/24 18:00:32 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/26 19:33:45 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,18 @@ void	*set_dead(void *arg)
 		i = 0;
 		while (i < table->numph)
 		{
-			if (philo[i].time >= table->t_die)
+			// printf("Philo %d\ttime: %zu - gettime(): %zu = %d\n", philo[i].id, philo[i].time, gettime(), (int)(gettime() - philo[i].time));
+			// printf("\nPhilo %d : timer: %d\n", philo[i].id, ((int)gettime() - philo[i].time));
+			if (((int)gettime() - philo[i].time) >= table->t_die)
 			{
+				// printf("\nPhilo %d : timer: %d\n", philo[i].id, (int)(gettime() - philo[i].time));
+				// exit(0);
 				table->is_dead = 1;
 				break ;
 			}
 			i++;
 		}
-		if (table->is_dead == 1)
+		if (table->is_dead == 1 || table->all_eat == 0)
 			break ;
 	}
 	return (NULL);

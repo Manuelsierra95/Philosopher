@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:43 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/24 17:53:15 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/26 19:27:32 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,26 @@ Required
 
 typedef struct s_state
 {
-	size_t			t_die;
-	size_t			t_eat;
-	size_t			t_sleep;
-	size_t			t_init;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	int				t_init;
 	int				is_dead;
-	size_t			m_eat;
+	int				m_eat;
+	int				all_eat;
 	int				numph;
 	int				need_clean;
 	char			*fork;
 	pthread_t		*thread;
 	pthread_mutex_t	*mutex;
 	pthread_mutex_t	print;
+	pthread_mutex_t	timer;
 }	t_state;
 typedef struct s_philo
 {
 	t_state	*state;
 	int		id;
-	size_t	time;
+	int		time;
 }	t_philo;
 // init
 void	mutex_init(t_state *state);
@@ -70,7 +72,6 @@ void	*phstate(void *arg);
 void	died(t_philo *philo);
 // Utils
 size_t	gettime(void);
-void	sleeptime(size_t time, t_philo *philo);
 int		minthread(int num1, int num2);
 int		maxthread(int num1, int num2);
 void	*set_dead(void *arg);
@@ -79,7 +80,8 @@ void	lock_mutex(pthread_mutex_t *mutex, t_philo *philo, int i, int id);
 void	unlock_mutex(pthread_mutex_t *mutex, t_philo *philo, int i, int id);
 void	manage_fork(t_philo *philo, t_state *table);
 void	print_msg(t_philo *philo, int flag, int id);
-void	t_sleep(t_philo *philo, size_t t_sleep);
+void	t_sleep(t_philo *philo, int t_sleep);
+void	add_timer(t_philo *philo, int time);
 // Error
 void	errorcontrol(int argc, char **argv);
 void	errormsg(int flag);

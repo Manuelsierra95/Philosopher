@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:47:32 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/24 17:54:53 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/26 19:30:52 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	philo_init(t_state *state, t_philo *philo)
 	{
 		philo[i].id = i;
 		philo[i].state = state;
-		philo[i].time = 0;
+		philo[i].time = (int)gettime();
 		i++;
 	}
 }

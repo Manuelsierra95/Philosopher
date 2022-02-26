@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:43:06 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/24 17:59:24 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/26 19:51:05 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	died(t_philo *philo)
 	t_state	*table;
 
 	table = philo->state;
-	t_sleep(philo, table->t_die);
+	if (table->numph > 1)
+		t_sleep(philo, table->t_die);
 	print_msg(philo, 6, philo->id);
 }
 
@@ -37,7 +38,9 @@ void	eating(t_philo *philo)
 	{
 		table = philo->state;
 		manage_fork(philo, table);
-		philo->time -= table->t_eat;
+		add_timer(philo, table->t_eat);
+		// philo->time += table->t_eat;
+		// printf("philo %d: time en eating: %zu\n", philo->id, philo->time);
 	}
 }
 
@@ -48,9 +51,11 @@ void	sleeping(t_philo *philo)
 	if (check_dead(philo->state, philo) == 0)
 	{
 		table = philo->state;
-		t_sleep(philo, table->t_sleep);
 		print_msg(philo, 4, philo->id);
-		philo->time -= table->t_sleep;
+		t_sleep(philo, table->t_sleep);
+		add_timer(philo, table->t_sleep);
+		// philo->time += table->t_sleep;
+		// printf("philo %d: time en sleeping: %zu\n", philo->id, philo->time);
 	}
 }
 
@@ -69,11 +74,14 @@ void	*phstate(void *arg)
 			// printf("[%zu ms]\tPhilo %d finish eating\n", time, philo->id);
 			break ;
 		}
+		// printf("philo %d: time al principio: %zu\n", philo->id, philo->time);
+		// printf("t_eat: %zu\n", philo->state->t_eat);
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);
-		philo->time = 0;
+		philo->time = (int)gettime();
 		m_eat--;
+		philo->state->all_eat--;
 	}
 	printf("Acaba hilo\n");
 	return (NULL);

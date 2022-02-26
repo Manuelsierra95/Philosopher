@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:51:03 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/24 17:53:39 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/02/26 19:51:15 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	manage_fork(t_philo *philo, t_state *table)
 	else if (total == -1)
 		lock_mutex(&table->mutex[m2], philo, m2, philo->id);
 	// printeat((gettime() - philo->state->t_init), philo);
-	t_sleep(philo, table->t_eat);
 	print_msg(philo, 3, philo->id);
+	t_sleep(philo, table->t_eat);
 	unlock_mutex(&table->mutex[m1], philo, m1, philo->id);
 	unlock_mutex(&table->mutex[m2], philo, m2, philo->id);
 }
