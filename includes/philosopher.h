@@ -39,6 +39,8 @@ typedef struct s_state
 	int				all_eat;
 	int				numph;
 	int				need_clean;
+	int				l_eat;
+	int				philo_dead;
 	char			*fork;
 	pthread_t		*thread;
 	pthread_mutex_t	*mutex;
@@ -47,6 +49,7 @@ typedef struct s_state
 }	t_state;
 typedef struct s_philo
 {
+	int		last_eat;
 	t_state	*state;
 	int		id;
 	int		time;

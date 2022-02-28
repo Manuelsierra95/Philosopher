@@ -65,12 +65,14 @@ void	*set_dead(void *arg)
 		while (i < table->numph)
 		{
 			// printf("Philo %d\ttime: %zu - gettime(): %zu = %d\n", philo[i].id, philo[i].time, gettime(), (int)(gettime() - philo[i].time));
-			// printf("\nPhilo %d : timer: %d\n", philo[i].id, ((int)gettime() - philo[i].time));
-			if (((int)gettime() - philo[i].time) >= table->t_die)
+			// printf("\nPhilo %d : timer: %d\n", philo[i].id, (philo[i].time - (int)gettime()));
+			if ((int)(philo[i].time - gettime()) >= table->t_die)
 			{
-				// printf("\nPhilo %d : timer: %d\n", philo[i].id, (int)(gettime() - philo[i].time));
+				printf("[%d ms]\t", (int)(gettime() - philo->state->t_init));
+				printf("Philo %d : timer: %d\n", philo[i].id, (int)(philo[i].time - gettime()));
 				// exit(0);
 				table->is_dead = 1;
+				table->philo_dead = philo[i].id;
 				break ;
 			}
 			i++;

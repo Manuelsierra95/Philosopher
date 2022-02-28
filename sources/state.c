@@ -17,9 +17,10 @@ void	died(t_philo *philo)
 	t_state	*table;
 
 	table = philo->state;
+	// printf("id: %d\n", id);
 	if (table->numph > 1)
-		t_sleep(philo, table->t_die);
-	print_msg(philo, 6, philo->id);
+		t_sleep(philo, 1);
+	print_msg(philo, 6, table->philo_dead);
 }
 
 void	thinking(t_philo *philo)
@@ -39,6 +40,8 @@ void	eating(t_philo *philo)
 		table = philo->state;
 		manage_fork(philo, table);
 		add_timer(philo, table->t_eat);
+		philo->last_eat = ((int)gettime() - table->t_init);
+		table->l_eat = philo->last_eat;
 		// philo->time += table->t_eat;
 		// printf("philo %d: time en eating: %zu\n", philo->id, philo->time);
 	}
