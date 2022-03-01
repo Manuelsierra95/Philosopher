@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 14:35:29 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/23 14:17:37 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:45:22 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	errorcontrol(int argc, char **argv)
 	else if (atoi(argv[1]) == 0 || atoi(argv[2]) <= 0 || atoi(argv[3]) <= 0
 		|| atoi(argv[4]) <= 0)
 		errormsg(3);
-	else if (atoi(argv[1]) > 200)
+	else if (atoi(argv[1]) > 5000)
 		errormsg(3);
 	else if (atoi(argv[2]) < 60 || atoi(argv[3]) < 60 || atoi(argv[4]) < 60)
 		errormsg(3);

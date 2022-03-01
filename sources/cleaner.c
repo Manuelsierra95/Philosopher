@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:57:30 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/21 16:46:50 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:17:24 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,9 @@ void	cleanall(t_philo *philo, int print)
 {
 	if (print == 4)
 		errormsg(4);
+	usleep(50);
 	cleanmutex(philo, print);
 	cleanthread(philo, print);
 	free(philo->state->fork);
-	exit(0);
-}
-
-void	clean(t_philo *philo)
-{
-	free(philo);
 	exit(0);
 }

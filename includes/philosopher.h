@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:43 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/26 19:27:32 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:20:23 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ typedef struct s_state
 	pthread_t		*thread;
 	pthread_mutex_t	*mutex;
 	pthread_mutex_t	print;
-	pthread_mutex_t	timer;
+	pthread_mutex_t	if_eat;
 }	t_state;
 typedef struct s_philo
 {
-	int		last_eat;
+	int		need_food;
 	t_state	*state;
 	int		id;
 	int		time;
@@ -85,6 +85,9 @@ void	manage_fork(t_philo *philo, t_state *table);
 void	print_msg(t_philo *philo, int flag, int id);
 void	t_sleep(t_philo *philo, int t_sleep);
 void	add_timer(t_philo *philo, int time);
+int		if_eat(t_philo *philo, t_state *table);
+
+void	onephilo(t_philo *philo);
 // Error
 void	errorcontrol(int argc, char **argv);
 void	errormsg(int flag);

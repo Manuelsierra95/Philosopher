@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:44:47 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/26 19:33:45 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:54:45 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,9 @@ void	*set_dead(void *arg)
 		i = 0;
 		while (i < table->numph)
 		{
-			// printf("Philo %d\ttime: %zu - gettime(): %zu = %d\n", philo[i].id, philo[i].time, gettime(), (int)(gettime() - philo[i].time));
-			// printf("\nPhilo %d : timer: %d\n", philo[i].id, (philo[i].time - (int)gettime()));
-			if ((int)(philo[i].time - gettime()) >= table->t_die)
+			if ((int)(philo[i].time - gettime()) > table->t_die || (philo[i].need_food == 1 && 
+				table->l_eat > 0 &&	((int)gettime() - table->l_eat + table->t_eat > table->t_die)))
 			{
-				printf("[%d ms]\t", (int)(gettime() - philo->state->t_init));
-				printf("Philo %d : timer: %d\n", philo[i].id, (int)(philo[i].time - gettime()));
-				// exit(0);
 				table->is_dead = 1;
 				table->philo_dead = philo[i].id;
 				break ;

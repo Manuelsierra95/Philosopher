@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:47:32 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/26 19:30:52 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:23:59 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void	philo_init(t_state *state, t_philo *philo)
 	int	i;
 
 	i = 0;
-	while (i <= state->numph)
+	while (i < state->numph)
 	{
 		philo[i].id = i;
 		philo[i].state = state;
 		philo[i].time = (int)gettime();
+		philo[i].need_food = 1;
 		i++;
 	}
 }
@@ -70,7 +71,7 @@ void	thread_init(t_state *state, t_philo *philo)
 			if (state->need_clean == 1)
 				cleanmutex(philo, 1);
 			cleanthread(philo, 1);
-			clean(philo);
+			exit(0);
 		}
 		i++;
 	}
