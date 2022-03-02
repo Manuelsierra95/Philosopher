@@ -57,10 +57,10 @@ void	errorcontrol(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 		errormsg(5);
-	else if (atoi(argv[1]) == 0 || atoi(argv[2]) <= 0 || atoi(argv[3]) <= 0
+	else if (atoi(argv[1]) <= 0 || atoi(argv[2]) <= 0 || atoi(argv[3]) <= 0
 		|| atoi(argv[4]) <= 0)
 		errormsg(3);
-	else if (atoi(argv[1]) > 5000)
+	else if (atoi(argv[1]) > 200)
 		errormsg(3);
 	else if (atoi(argv[2]) < 60 || atoi(argv[3]) < 60 || atoi(argv[4]) < 60)
 		errormsg(3);

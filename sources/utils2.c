@@ -22,7 +22,6 @@ void	onephilo(t_philo *philo)
 void	lock_mutex(pthread_mutex_t *mutex, t_philo *philo, int i, int id)
 {
 	pthread_mutex_lock(mutex);
-	// printf(BLUE "[%zu ms]\tPhilo %d is taking a fork\n" RESET, time, id);
 	philo->state->fork[i] = 1;
 	print_msg(philo, 1, id);
 	if (philo->state->numph == 1)
@@ -34,21 +33,17 @@ void	unlock_mutex(pthread_mutex_t *mutex, t_philo *philo, int i, int id)
 	philo->state->fork[i] = 0;
 	pthread_mutex_unlock(mutex);
 	print_msg(philo, 2, id);
-	// printf(CYAN "[%zu ms]\tPhilo %d left the fork\n" RESET, time, id);
 }
 
 void	manage_fork(t_philo *philo, t_state *table)
 {
-	int	total;
 	int	m1;
 	int	m2;
 
 	m1 = minthread(philo->id, (philo->id + 1) % philo->state->numph);
 	m2 = maxthread(philo->id, (philo->id + 1) % philo->state->numph);
-	total = table->fork[m1] - table->fork[m2];
 	lock_mutex(&table->mutex[m1], philo, m1, philo->id);
 	lock_mutex(&table->mutex[m2], philo, m2, philo->id);
-	// printf("last_food: %d\n", table->l_eat - table->t_init);
 	print_msg(philo, 3, philo->id);
 	t_sleep(philo, table->t_eat);
 	table->l_eat = (int)gettime();

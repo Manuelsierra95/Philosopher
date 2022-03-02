@@ -85,8 +85,6 @@ void	manage_fork(t_philo *philo, t_state *table);
 void	print_msg(t_philo *philo, int flag, int id);
 void	t_sleep(t_philo *philo, int t_sleep);
 void	add_timer(t_philo *philo, int time);
-int		if_eat(t_philo *philo, t_state *table);
-
 void	onephilo(t_philo *philo);
 // Error
 void	errorcontrol(int argc, char **argv);

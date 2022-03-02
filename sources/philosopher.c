@@ -12,9 +12,6 @@
 
 #include"../includes/philosopher.h"
 
-/*
-	
-*/
 void	leak(void)
 {
 	system("leaks philo");

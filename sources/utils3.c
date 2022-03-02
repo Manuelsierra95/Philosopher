@@ -30,10 +30,7 @@ void	t_sleep(t_philo *philo, int t_sleep)
 void	add_timer(t_philo *philo, int time)
 {
 	pthread_mutex_lock(&philo->state->mutex[philo->id]);
-	// printf("time: %d\n", time);
-	// printf("Philo[%d]: %d\n", philo->id, (int)(philo->time - gettime()));
 	philo->time += time;
-	// printf("Philo[%d]: %d\n", philo->id, (int)(philo->time - gettime()));
 	pthread_mutex_unlock(&philo->state->mutex[philo->id]);
 }
 
