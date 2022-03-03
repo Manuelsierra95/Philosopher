@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 14:35:29 by msierra-          #+#    #+#             */
-/*   Updated: 2022/03/01 17:45:22 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:53:44 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	checkerror(int argc, char **argv)
 			if (!((argv[x][y] >= '0' && argv[x][y] <= '9') || (argv[x][y] == '-'
 					|| argv[x][y] == '+')))
 				errormsg(3);
-			y++;	
+			y++;
 		}
 		x++;
 	}

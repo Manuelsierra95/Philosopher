@@ -6,16 +6,11 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:47:53 by msierra-          #+#    #+#             */
-/*   Updated: 2022/03/01 18:25:29 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:57:12 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../includes/philosopher.h"
-
-void	leak(void)
-{
-	system("leaks philo");
-}
 
 int	main(int argc, char **argv)
 {
@@ -24,7 +19,6 @@ int	main(int argc, char **argv)
 	int				i;
 
 	i = 0;
-	atexit(leak);
 	errorcontrol(argc, argv);
 	getvalues(argc, argv, &state);
 	philo = (t_philo *) malloc(state.numph * (sizeof(t_philo) + 1));

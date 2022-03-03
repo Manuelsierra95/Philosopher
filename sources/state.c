@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:43:06 by msierra-          #+#    #+#             */
-/*   Updated: 2022/03/01 17:59:06 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:51:03 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	sleeping(t_philo *philo)
 		print_msg(philo, 4, philo->id);
 		t_sleep(philo, table->t_sleep);
 		add_timer(philo, table->t_sleep);
-		philo->need_food = 1;
+		philo->n_food = 1;
 		usleep(50);
 	}
 }
@@ -79,7 +79,7 @@ void	*phstate(void *arg)
 		usleep(50);
 		thinking(philo);
 		usleep(50);
-		philo->time = (int)gettime();
+		philo->time = gettime();
 		m_eat--;
 		philo->state->all_eat--;
 	}

@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:51:03 by msierra-          #+#    #+#             */
-/*   Updated: 2022/03/01 18:24:54 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:54:21 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void	manage_fork(t_philo *philo, t_state *table)
 	lock_mutex(&table->mutex[m2], philo, m2, philo->id);
 	print_msg(philo, 3, philo->id);
 	t_sleep(philo, table->t_eat);
-	table->l_eat = (int)gettime();
-	philo->need_food = 0;
+	table->l_eat = gettime();
+	philo->n_food = 0;
 	unlock_mutex(&table->mutex[philo->id], philo, m1, philo->id);
-	unlock_mutex(&table->mutex[(philo->id + 1) % philo->state->numph], philo, m2, philo->id);
+	unlock_mutex(&table->mutex[(philo->id + 1) % philo->state->numph],
+		philo, m2, philo->id);
 }

@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:44:47 by msierra-          #+#    #+#             */
-/*   Updated: 2022/03/01 17:54:45 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:53:14 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	maxthread(int num1, int num2)
 		return (num2);
 }
 
-size_t	gettime(void)
+int	gettime(void)
 {
 	struct timeval	t_val;
 
@@ -64,8 +64,9 @@ void	*set_dead(void *arg)
 		i = 0;
 		while (i < table->numph)
 		{
-			if ((int)(philo[i].time - gettime()) > table->t_die || (philo[i].need_food == 1 && 
-				table->l_eat > 0 &&	((int)gettime() - table->l_eat + table->t_eat > table->t_die)))
+			if ((philo[i].time - gettime()) > table->t_die
+				|| (philo[i].n_food == 1 && table->l_eat > 0 && (gettime()
+						- table->l_eat + table->t_eat > table->t_die)))
 			{
 				table->is_dead = 1;
 				table->philo_dead = philo[i].id;

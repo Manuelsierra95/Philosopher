@@ -6,7 +6,7 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:06:53 by msierra-          #+#    #+#             */
-/*   Updated: 2022/02/26 19:53:28 by msierra-         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:54:36 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ void	t_sleep(t_philo *philo, int t_sleep)
 {
 	int	time;
 
-	time = (int)gettime();
+	time = gettime();
 	philo->time += t_sleep;
 	while (1)
 	{
-		if ((int)gettime() - time >= t_sleep)
+		if (gettime() - time >= t_sleep)
 			break ;
 		usleep(100);
 	}
-
 }
 
 void	add_timer(t_philo *philo, int time)
@@ -38,7 +37,7 @@ void	print_msg(t_philo *philo, int flag, int id)
 {
 	int	time;
 
-	time = (int)gettime() - philo->state->t_init;
+	time = gettime() - philo->state->t_init;
 	pthread_mutex_lock(&philo->state->print);
 	if (philo->state->is_dead == 0 || flag == 6)
 	{
