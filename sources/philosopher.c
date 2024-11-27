@@ -16,9 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_philo			*philo;
 	static t_state	state;
-	int				i;
-
-	i = 0;
+	
 	errorcontrol(argc, argv);
 	getvalues(argc, argv, &state);
 	philo = (t_philo *) malloc(state.numph * (sizeof(t_philo) + 1));
